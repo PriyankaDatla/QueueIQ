@@ -98,7 +98,7 @@ public class PlaceService {
                     .address(p.getFormatted())
                     .latitude(p.getLat())
                     .longitude(p.getLon())
-                    .registered(true)
+                    .registered(false)
                     .build();
 
             dto.setDistance(
@@ -120,36 +120,29 @@ public class PlaceService {
                                 dto.getLongitude()
                         );
 
-
-
-                String geoName = dto.getName().toLowerCase().trim();
-                String dbName = queue.getQueueName().toLowerCase().trim();
-
-                boolean nameMatches =
-                        geoName.contains(dbName) ||
-                                dbName.contains(geoName);
-
-                if (queueDistance <= 0.5 && nameMatches) {
+                if (queueDistance <= 0.3) {
 
                     dto.setRegistered(true);
 
                     Long queueSize =
                             tokenRepository.getCurrentQueueSize(queue.getQueueId());
 
-                    dto.setQueueId(queue.getQueueId());
+                    if (queueSize == null)
+                        queueSize = 0L;
 
+                    dto.setQueueId(queue.getQueueId());
                     dto.setCurrentQueueSize(queueSize.intValue());
 
-                    int waitTime =
-                            queue.getAverageServiceTime() * queueSize.intValue();
-
-                    dto.setEstimatedWaitTime(waitTime);
+                    dto.setEstimatedWaitTime(
+                            queue.getAverageServiceTime() * queueSize.intValue()
+                    );
 
                     dto.setRating(queue.getRating());
 
                     dto.setRecommendationScore(
                             calculateRecommendationScore(dto)
                     );
+
                     dto.setLatitude(queue.getLatitude());
                     dto.setLongitude(queue.getLongitude());
 
@@ -159,6 +152,7 @@ public class PlaceService {
 
             places.add(dto);
         }
+
         places.sort(
                 Comparator.comparing(
                         NearbyPlaceResponse::getRecommendationScore
