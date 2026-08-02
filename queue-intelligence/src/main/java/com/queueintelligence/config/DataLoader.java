@@ -75,7 +75,7 @@ public class DataLoader {
             repository.save(
                     Queue.builder()
                             .queueName("MeeSeva Center")
-                            .serviceType(ServiceType.GOVERNMENT)
+                            .serviceType(ServiceType.GOVERNMENT_OFFICE)
                             .address("Bhanugudi, Kakinada")
                             .latitude(16.9628)
                             .longitude(82.2355)
@@ -92,7 +92,7 @@ public class DataLoader {
             repository.save(
                     Queue.builder()
                             .queueName("Passport Seva Kendra")
-                            .serviceType(ServiceType.GOVERNMENT)
+                            .serviceType(ServiceType.GOVERNMENT_OFFICE)
                             .address("Ramanayyapeta, Kakinada")
                             .latitude(16.9748)
                             .longitude(82.2462)
@@ -109,7 +109,7 @@ public class DataLoader {
             repository.save(
                     Queue.builder()
                             .queueName("RTO Office Kakinada")
-                            .serviceType(ServiceType.GOVERNMENT)
+                            .serviceType(ServiceType.GOVERNMENT_OFFICE)
                             .address("Ramanayyapeta, Kakinada")
                             .latitude(16.9736)
                             .longitude(82.2510)
@@ -160,7 +160,7 @@ public class DataLoader {
             repository.save(
                     Queue.builder()
                             .queueName("D-Mart Billing Counter")
-                            .serviceType(ServiceType.SHOPPING)
+                            .serviceType(ServiceType.RESTAURANT)
                             .address("Sarpavaram Junction, Kakinada")
                             .latitude(16.9891)
                             .longitude(82.2486)
@@ -177,7 +177,7 @@ public class DataLoader {
             repository.save(
                     Queue.builder()
                             .queueName("Kakinada Railway Reservation Counter")
-                            .serviceType(ServiceType.GOVERNMENT)
+                            .serviceType(ServiceType.GOVERNMENT_OFFICE)
                             .address("Kakinada Town Railway Station")
                             .latitude(16.9417)
                             .longitude(82.2354)
